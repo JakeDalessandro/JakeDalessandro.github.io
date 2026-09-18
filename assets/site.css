@@ -149,9 +149,9 @@ section{padding:clamp(6rem,13vw,10.5rem) 0}
 .note{border-left:2px solid var(--accent);padding-left:1.1rem;color:var(--ink-2);font-size:.95rem}
 
 /* ---------- scroll reveal ---------- */
-.rv{opacity:0;transform:translateY(38px);filter:blur(6px);
+.js .rv{opacity:0;transform:translateY(38px);filter:blur(6px);
     transition:opacity var(--slow) var(--ease),transform var(--slow) var(--ease),filter var(--slow) var(--ease)}
-.rv.in{opacity:1;transform:none;filter:none}
+.js .rv.in{opacity:1;transform:none;filter:none}
 
 /* ---------- footer ---------- */
 footer{padding:4rem 0 5rem;border-top:1px solid var(--line)}
@@ -167,6 +167,6 @@ footer{padding:4rem 0 5rem;border-top:1px solid var(--line)}
   section{padding:4.5rem 0}
 }
 @media (prefers-reduced-motion:reduce){
-  .rv{opacity:1;transform:none;filter:none;transition:none}
+  .js .rv{opacity:1;transform:none;filter:none;transition:none}
   html{scroll-behavior:auto}
 }
