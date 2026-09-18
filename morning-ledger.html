@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Morning Ledger — Jake Dalessandro</title>
+<meta name="description" content="A daily market brief that assembles itself, degrades honestly when its sources are unreachable, and grades its own predictions. Case study.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Morning Ledger — a brief that grades itself">
+<meta property="og:description" content="How a silent failure with no error message reshaped an automated daily market brief. Case study by Jake Dalessandro.">
+<meta property="og:url" content="https://jakedalessandro.github.io/morning-ledger.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88' font-family='Georgia,serif'%3EJD%3C/text%3E%3C/svg%3E">
+<style>
+  .prose{max-width:66ch}
+  .prose p{font-size:1.02rem}
+  .flow{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:center;margin:.5rem 0 0}
+  .node{border:1px solid var(--line-2);border-radius:.85rem;padding:.9rem 1rem;background:var(--paper);text-align:center}
+  .node .mono{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:.25rem}
+  .node strong{font-size:.92rem}
+  .arrow{color:var(--ink-3);font-size:1.1rem}
+  .merge{margin-top:1rem;border:1px dashed var(--line-2);border-radius:.85rem;padding:.9rem 1rem;text-align:center;background:var(--accent-soft)}
+  @media(max-width:768px){.flow{grid-template-columns:1fr;gap:.5rem}.arrow{transform:rotate(90deg)}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-pill">
+    <a href="index.html" class="mark">JD</a>
+    <a href="index.html#work">Work</a>
+    <a href="https://github.com/JakeDalessandro/morning-ledger">Repo</a>
+  </div>
+</nav>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="rv" style="max-width:46rem">
+        <span class="eyebrow">Case study &middot; 2026</span>
+        <h1 class="display" style="font-size:clamp(2.6rem,6.6vw,5rem)">A brief that<br>grades itself.</h1>
+        <p class="lede" style="margin-top:2rem;max-width:60ch">
+          The Morning Ledger is an automated daily market brief. It has run every
+          morning since August 2026. It reports on a real portfolio, pulls from
+          market and coursework APIs, and keeps a scored record of every prediction
+          it makes &mdash; including the ones it gets wrong.
+        </p>
+        <div class="hero-sub">
+          <a class="btn" href="https://github.com/JakeDalessandro/morning-ledger">View the repo <span class="cap">&#8599;</span></a>
+          <a class="btn ghost" href="index.html">Back to work <span class="cap">&larr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <div class="wrap">
+      <div class="bento">
+        <div class="c7 rv">
+          <div class="prose">
+            <span class="eyebrow">01 &mdash; The problem</span>
+            <h2 class="display">A failure with no error message</h2>
+            <p>
+              The first version ran on a 9am cron job. By every measure I was
+              watching, it worked. It fired on schedule, it never crashed, and a
+              complete brief landed every morning.
+            </p>
+            <p>
+              It was also getting quietly worse every single day.
+            </p>
+            <p>
+              The brief pulls from sources that need an authenticated browser
+              session. On an unattended run, that session was not available &mdash;
+              so every one of those sources silently fell back to a thinner
+              substitute. The output still had all eight sections. It still read
+              like a finished document. Nothing anywhere in it said the data behind
+              half the page had been downgraded.
+            </p>
+            <p>
+              This is the part I think about most. A crash would have told me
+              something was wrong on day one. A silent degradation ran for weeks.
+            </p>
+          </div>
+        </div>
+        <div class="c5 rv" style="transition-delay:100ms">
+          <div class="shell warm"><div class="core">
+            <h3>The principle that came out of it</h3>
+            <p class="note" style="margin-bottom:0">
+              A fallback that does not announce itself is worse than a visible
+              failure. Every degraded path in the system now labels itself in its own
+              output.
+            </p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <div class="wrap">
+      <div class="rv prose">
+        <span class="eyebrow">02 &mdash; The fix</span>
+        <h2 class="display">Change when it runs, not how it fails</h2>
+        <p>
+          The instinct is to add error handling. But there was no error to handle
+          &mdash; every component did exactly what it was told. The problem was the
+          <em>condition</em> the job ran under.
+        </p>
+        <p>
+          So the trigger moved off the clock entirely. Instead of firing at 9am
+          regardless, it now fires on the first session I open each day, which is
+          precisely the condition the authenticated sources need. The scheduled job
+          stayed on as a safety net &mdash; but guarded, and it labels its own output
+          as the degraded edition.
+        </p>
+      </div>
+
+      <div class="rv" style="margin-top:2.5rem;transition-delay:80ms">
+        <div class="shell"><div class="core">
+          <h3 style="margin-bottom:1.2rem">Two execution paths, one source of truth</h3>
+          <div class="flow">
+            <div class="node">
+              <span class="mono">Primary</span>
+              <strong>Session trigger</strong><br>
+              <span class="muted" style="font-size:.82rem">first session of the day &middot; attended</span>
+            </div>
+            <div class="arrow">&rarr;</div>
+            <div class="node">
+              <span class="mono">Fallback</span>
+              <strong>Scheduled run</strong><br>
+              <span class="muted" style="font-size:.82rem">late afternoon &middot; labels itself degraded</span>
+            </div>
+          </div>
+          <div class="merge">
+            <span class="mono" style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)">Both paths call the same procedure</span>
+          </div>
+          <p class="muted" style="margin:1.2rem 0 0;font-size:.9rem">
+            The fallback does not carry its own copy of the steps. It invokes the
+            same one the primary path does, so there is no second version to drift.
+          </p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <div class="wrap">
+      <div class="bento">
+        <div class="c6 rv">
+          <div class="prose">
+            <span class="eyebrow">03 &mdash; Reliability</span>
+            <h2 class="display">Two flags, two questions</h2>
+            <p>
+              A once-a-day job is harder than it sounds when the runtime can start,
+              resume, and restart unpredictably. The system tracks two separate
+              markers, because they answer different questions and one flag cannot do
+              both jobs.
+            </p>
+          </div>
+        </div>
+        <div class="c6 rv" style="transition-delay:90ms">
+          <div class="shell"><div class="core">
+            <dl style="margin:0">
+              <div class="kv"><dt style="max-width:60%"><code class="mono">FIRED</code> &mdash; the trigger already ran today</dt><dd>stops it nagging</dd></div>
+              <div class="kv"><dt style="max-width:60%"><code class="mono">PUBLISHED</code> &mdash; a brief actually went out</dt><dd>stops duplicates</dd></div>
+            </dl>
+            <p style="margin:1.3rem 0 0;font-size:.95rem">
+              The marker is written <em>before</em> the work, not after. A crashed run
+              loses that day rather than risking a retry loop &mdash; a deliberate
+              trade, because a missed brief is cheap and a nag loop is expensive.
+            </p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <div class="wrap">
+      <div class="rv prose">
+        <span class="eyebrow">04 &mdash; The part I am proudest of</span>
+        <h2 class="display">It writes down when it is wrong</h2>
+        <p>
+          Any claim specific enough to be checkable gets logged with a horizon date
+          and the full reasoning behind it &mdash; recorded <em>before</em> the
+          outcome is known. When a later run passes that horizon, it scores the call
+          and writes one retrospective line: what was claimed, what happened, and
+          which mechanism was misjudged.
+        </p>
+        <p>
+          A system that only ever forecasts forward has no way to be wrong, and a
+          tool that cannot be wrong is not telling you anything.
+        </p>
+      </div>
+
+      <div class="bento" style="margin-top:2.5rem">
+        <div class="c7 rv">
+          <div class="shell"><div class="core">
+            <h3>An actual entry, unedited</h3>
+            <p class="note" style="margin-bottom:1.1rem">
+              <strong>Half right.</strong> Direction was right, magnitude was badly
+              wrong: predicted &minus;1% to &minus;2%, actual &minus;0.05% &mdash; a
+              20&ndash;40&times; overestimate. Cause: sized the print as if it landed
+              into an unchanged backdrop, but dovish comments 24h earlier had already
+              moved the odds from ~65% to ~55%, and the strong print only pushed them
+              back to ~50%. The two events largely cancelled.
+            </p>
+            <p style="margin-bottom:0">
+              <strong>Lesson: size the delta versus what is already priced, not the
+              absolute surprise.</strong>
+            </p>
+          </div></div>
+        </div>
+        <div class="c5 rv" style="transition-delay:90ms">
+          <div class="shell warm"><div class="core">
+            <h3>On the record itself</h3>
+            <p style="margin-bottom:0;font-size:.95rem">
+              At the time of writing the directional log holds four graded calls, one
+              correct. That is not a track record &mdash; it is a sample far too small
+              to separate skill from a coin flip, and it is published unedited for
+              exactly that reason. The point of the loop is that the misses get
+              written down and diagnosed, not that the calls are good.
+            </p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <div class="wrap">
+      <div class="rv prose">
+        <span class="eyebrow">05 &mdash; What I would tell you about it</span>
+        <h2 class="display">What it taught me</h2>
+        <p>
+          <strong>Silent degradation is the expensive failure.</strong> Systems that
+          crash get fixed. Systems that quietly return worse answers do not, because
+          nothing raises a hand.
+        </p>
+        <p>
+          <strong>Sometimes the bug is the schedule.</strong> The fix here was not a
+          code change at all &mdash; it was recognising that the job was running under
+          the wrong conditions.
+        </p>
+        <p>
+          <strong>Write the reasoning down before the outcome.</strong> It is the only
+          way a retrospective means anything. Grading a call you reconstructed after
+          the fact grades your memory, not your judgment.
+        </p>
+      </div>
+
+      <div class="rv" style="margin-top:3rem">
+        <div style="display:flex;gap:.7rem;flex-wrap:wrap">
+          <a class="btn" href="https://github.com/JakeDalessandro/morning-ledger">Read the code and docs <span class="cap">&#8599;</span></a>
+          <a class="btn ghost" href="index.html#contact">Get in touch <span class="cap">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono muted" style="font-size:12px">JAKE DALESSANDRO &middot; LOS ANGELES</span>
+    <a href="index.html" class="mono muted" style="font-size:12px;text-decoration:none">&larr; BACK</a>
+  </div>
+</footer>
+
+<script>
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+</script>
+</body>
+</html>

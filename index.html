@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jake Dalessandro — Information Systems</title>
+<meta name="description" content="Information Systems student at CSUN building small systems that touch real financial data and have to be right. Seeking summer 2027 technology advisory and IT audit internships.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jake Dalessandro — Information Systems">
+<meta property="og:description" content="I build small systems that touch real financial data and have to be right. CSUN Information Systems, 2029. Seeking summer 2027 technology advisory / IT audit internships.">
+<meta property="og:url" content="https://jakedalessandro.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88' font-family='Georgia,serif'%3EJD%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-pill">
+    <a href="#top" class="mark">JD</a>
+    <a href="#work">Work</a>
+    <a href="#background">Background</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="rv">
+          <span class="eyebrow">CSUN &middot; Information Systems &middot; 2029</span>
+          <h1 class="display">I build small<br>systems that<br>have to be <em>right</em>.</h1>
+          <div class="hero-sub">
+            <a class="btn" href="morning-ledger.html">See how one works <span class="cap">&rarr;</span></a>
+            <a class="btn ghost" href="https://linkedin.com/in/jakedalessandro">LinkedIn <span class="cap">&#8599;</span></a>
+          </div>
+        </div>
+
+        <div class="rv" style="transition-delay:120ms">
+          <div class="shell warm">
+            <div class="core">
+              <p class="lede" style="margin-bottom:1.6rem">
+                I am a sophomore at CSUN&rsquo;s Nazarian College studying Information
+                Systems. Most of my time goes into one thing: an automated daily
+                market brief that has run every morning since August 2026, reports on
+                a real portfolio, and grades its own predictions against what
+                actually happened.
+              </p>
+              <dl style="margin:0">
+                <div class="kv"><dt>Focus</dt><dd>Technology &amp; risk advisory</dd></div>
+                <div class="kv"><dt>Degree</dt><dd>BS Information Systems</dd></div>
+                <div class="kv"><dt>Graduating</dt><dd>June 2029</dd></div>
+                <div class="kv"><dt>Looking for</dt><dd>Summer 2027 internship</dd></div>
+                <div class="kv"><dt>Based</dt><dd>Los Angeles, CA</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="work">
+    <div class="wrap">
+      <div class="rv">
+        <span class="eyebrow">Selected work</span>
+        <h2 class="display">The Morning Ledger</h2>
+        <p class="lede" style="margin-bottom:3rem;max-width:64ch">
+          A daily market brief that assembles itself, degrades honestly when its
+          sources are unreachable, and keeps a scored record of every call it makes.
+          The interesting problems were never the data.
+        </p>
+      </div>
+
+      <div class="bento">
+        <div class="c8 rv">
+          <div class="shell"><div class="core">
+            <h3>The failure that had no error message</h3>
+            <p>
+              The first version ran on a 9am cron. It worked, and the output was
+              quietly worse every single day. Unattended runs could not reach the
+              authenticated data sources, so each one silently fell back to a thinner
+              substitute. The brief still published. It still looked complete.
+              Nothing in it said otherwise.
+            </p>
+            <p style="margin-bottom:0">
+              The fix was not better error handling &mdash; it was changing
+              <em>when</em> the job runs, so it happens while I am present and the
+              sources connect. That one diagnosis shaped everything else in the
+              system.
+            </p>
+            <div class="tags">
+              <span class="tag">idempotency</span><span class="tag">graceful-degradation</span>
+              <span class="tag">bash</span><span class="tag">rest-apis</span><span class="tag">scheduling</span>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="c4 rv" style="transition-delay:90ms">
+          <div class="shell warm"><div class="core">
+            <span class="stat">Aug 2026</span>
+            <p class="muted" style="margin-bottom:1.6rem">running daily since</p>
+            <span class="stat">8</span>
+            <p class="muted" style="margin-bottom:1.6rem">sections assembled per run</p>
+            <span class="stat">2</span>
+            <p class="muted" style="margin-bottom:0">execution paths, one source of truth</p>
+          </div></div>
+        </div>
+
+        <div class="c5 rv" style="transition-delay:60ms">
+          <div class="shell"><div class="core">
+            <h3>It grades its own calls</h3>
+            <p style="margin-bottom:0">
+              Any prediction specific enough to be checkable gets logged with a
+              horizon date and the reasoning behind it, written <em>before</em> the
+              outcome is known. When the horizon passes, a later run scores it and
+              writes down which mechanism was misjudged. A system that only ever
+              forecasts forward has no way to be wrong.
+            </p>
+          </div></div>
+        </div>
+
+        <div class="c7 rv" style="transition-delay:120ms">
+          <div class="shell"><div class="core">
+            <h3>A sample grade, unedited</h3>
+            <p class="note" style="margin-bottom:1.2rem">
+              <strong>Half right.</strong> Direction was right, magnitude was badly
+              wrong: predicted &minus;1% to &minus;2%, actual &minus;0.05% &mdash; a
+              20&ndash;40&times; overestimate. Cause: sized the print as if it landed
+              into an unchanged backdrop, but dovish comments 24h earlier had already
+              moved the odds. The two events largely cancelled.
+            </p>
+            <p style="margin-bottom:1.4rem"><strong>Lesson: size the delta versus what is already priced, not the absolute surprise.</strong></p>
+            <a class="btn ghost" href="morning-ledger.html">Read the full case study <span class="cap">&rarr;</span></a>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="background">
+    <div class="wrap">
+      <div class="rv">
+        <span class="eyebrow">Background</span>
+        <h2 class="display">Where I am coming from</h2>
+      </div>
+
+      <div class="bento" style="margin-top:2.5rem">
+        <div class="c6 rv">
+          <div class="shell"><div class="core">
+            <h3>Education</h3>
+            <p style="margin-bottom:1.4rem">
+              <strong>California State University, Northridge</strong><br>
+              <span class="muted">David Nazarian College of Business and Economics</span>
+            </p>
+            <dl style="margin:0">
+              <div class="kv"><dt>Degree</dt><dd>BS Information Systems</dd></div>
+              <div class="kv"><dt>Concentration</dt><dd>Business Systems</dd></div>
+              <div class="kv"><dt>Expected</dt><dd>June 2029</dd></div>
+            </dl>
+          </div></div>
+        </div>
+
+        <div class="c6 rv" style="transition-delay:90ms">
+          <div class="shell"><div class="core">
+            <h3>Experience</h3>
+            <dl style="margin:0">
+              <div class="kv"><dt>AMC Theatres &mdash; Crew Member</dt><dd>2025 &ndash; now</dd></div>
+              <div class="kv"><dt>Cage Roller Hockey &mdash; Scorekeeper</dt><dd>2023 &ndash; 2025</dd></div>
+              <div class="kv"><dt>Entrepreneurship Club &mdash; VP</dt><dd>2023 &ndash; 2024</dd></div>
+            </dl>
+            <h3 style="margin-top:1.8rem">Certified</h3>
+            <p class="muted" style="margin-bottom:0">Microsoft Office Specialist &mdash; Excel Associate</p>
+          </div></div>
+        </div>
+
+        <div class="c12 rv" style="transition-delay:60ms">
+          <div class="shell warm"><div class="core">
+            <h3>What I actually work with</h3>
+            <p style="margin-bottom:.6rem">
+              A short list on purpose &mdash; these are things I have used to build
+              something that runs, not things I have read about.
+            </p>
+            <div class="tags">
+              <span class="tag">Bash</span><span class="tag">Git</span><span class="tag">REST APIs</span>
+              <span class="tag">Excel &mdash; MOS certified</span><span class="tag">JSON / jq</span>
+              <span class="tag">Markdown</span><span class="tag">Claude Code</span>
+            </div>
+            <p class="muted" style="margin:1.2rem 0 0">
+              Learning Python next, for the analysis side of the project above.
+            </p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="contact">
+    <div class="wrap" style="text-align:center">
+      <div class="rv">
+        <span class="eyebrow">Get in touch</span>
+        <h2 class="display" style="margin-bottom:1.4rem">Open to summer 2027<br>internships.</h2>
+        <p class="lede" style="margin:0 auto 2.4rem;max-width:46ch">
+          Technology advisory, IT audit, or business systems analysis.
+          Los Angeles or remote.
+        </p>
+        <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap">
+          <a class="btn" href="https://linkedin.com/in/jakedalessandro">LinkedIn <span class="cap">&#8599;</span></a>
+          <a class="btn ghost" href="https://github.com/JakeDalessandro">GitHub <span class="cap">&#8599;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono muted" style="font-size:12px">JAKE DALESSANDRO &middot; LOS ANGELES</span>
+    <span class="mono muted" style="font-size:12px">BUILT BY HAND, 2026</span>
+  </div>
+</footer>
+
+<script>
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+</script>
+</body>
+</html>
