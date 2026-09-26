@@ -166,6 +166,11 @@ footer{padding:4rem 0 5rem;border-top:1px solid var(--line)}
   .nav-pill a:not(.mark){padding:.5rem .7rem;font-size:.78rem}
   section{padding:4.5rem 0}
 }
+/* printing or saving as PDF: show every section, whether or not it was scrolled into view */
+@media print{
+  .js .rv{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+  body::after,.nav{display:none!important}
+}
 @media (prefers-reduced-motion:reduce){
   .js .rv{opacity:1;transform:none;filter:none;transition:none}
   html{scroll-behavior:auto}
